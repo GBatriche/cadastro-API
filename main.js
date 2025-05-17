@@ -2,6 +2,19 @@ document.addEventListener('DOMContentLoaded', function () {
     const cepInput = document.getElementById('cep');
     const formulario = document.getElementById('formulario');
 
+    // Recuperar dados salvos ao recarregar a página
+    const dadosSalvos = localStorage.getItem('formularioCadastro');
+    if (dadosSalvos) {
+        const dados = JSON.parse(dadosSalvos);
+        document.getElementById('nome').value = dados.nome || '';
+        document.getElementById('cep').value = dados.cep || '';
+        document.getElementById('rua').value = dados.rua || '';
+        document.getElementById('cidade').value = dados.cidade || '';
+        document.getElementById('estado').value = dados.estado || '';
+        document.getElementById('numero').value = dados.numero || '';
+    }
+
+    // Buscar CEP via ViaCEP
     cepInput.addEventListener('blur', function () {
         const cep = cepInput.value.trim();
 
